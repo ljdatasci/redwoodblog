@@ -12,7 +12,7 @@ import { useMutation } from '@redwoodjs/web'
 import { useForm } from 'react-hook-form'
 
 const CREATE_CONTACT = gql`
-  mutation CreateContactMutation($input: CreateContactInput!) {
+  mutation CreateContactMutation($input: ContactInput!) {
     createContact(input: $input) {
       id
     }
@@ -24,13 +24,13 @@ const ContactPage = () => {
 
   const [create, { loading, error }] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
-      formMethods.reset()
       alert('Thank you for your message!')
     },
   })
   const onSubmit = (data) => {
     create({ variables: { input: data } })
-    console.log(data)
+    console.info(data)
+    formMethods.reset()
   }
 
   return (
@@ -50,6 +50,7 @@ const ContactPage = () => {
         </Label>
         <TextField
           name="name"
+          className="input"
           errorClassName="error"
           validation={{ required: true }}
         />
@@ -60,6 +61,7 @@ const ContactPage = () => {
         </Label>
         <TextField
           name="email"
+          className="input"
           errorClassName="error"
           validation={{ required: true, pattern: { value: /[^@]+@[^.]+\..+/ } }}
         />
@@ -70,6 +72,7 @@ const ContactPage = () => {
         </Label>
         <TextAreaField
           name="message"
+          className="input"
           errorClassName="error"
           validation={{ required: true }}
         />
