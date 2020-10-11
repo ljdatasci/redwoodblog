@@ -12,7 +12,7 @@ import { useMutation } from '@redwoodjs/web'
 import { useForm } from 'react-hook-form'
 
 const CREATE_CONTACT = gql`
-  mutation CreateContactMutation($input: ContactInput!) {
+  mutation CreateContactMutation($input: CreateContactInput!) {
     createContact(input: $input) {
       id
     }
