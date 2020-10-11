@@ -1,6 +1,6 @@
 import BlogPost from 'src/components/BlogPost'
 export const QUERY = gql`
-  query($id: Int!) {
+  query BlogPostQuery($id: Int!) {
     post(id: $id) {
       id
       title
